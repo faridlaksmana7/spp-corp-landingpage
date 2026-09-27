@@ -1,0 +1,264 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   SPP CORP — CYBERNETIC LOTTIE ASSET PRELOADER
+   Full-screen asset synchronization stage with Lottie Bodymovin SVG animation
+   Fully responsive across Ultra-wide, Desktop, Tablet, and Mobile screens
+   ═══════════════════════════════════════════════════════════════════════════════ */
+
+#spp-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+    z-index: 999999999;
+    background-color: #06090e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.65s cubic-bezier(0.77, 0, 0.175, 1);
+    will-change: transform, opacity;
+}
+
+#spp-preloader.spp-loaded {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spp-preloader-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 45%, rgba(0, 178, 254, 0.18) 0%, rgba(6, 9, 14, 0.94) 55%, #040609 100%);
+    pointer-events: none;
+}
+
+.spp-preloader-grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 178, 254, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 178, 254, 0.08) 1px, transparent 1px);
+    background-size: 38px 38px;
+    background-position: center center;
+    opacity: 0.7;
+    mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 35%, transparent 75%);
+    pointer-events: none;
+}
+
+.spp-preloader-core {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    max-width: 90vw;
+}
+
+.spp-lottie-stage {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#spp-lottie-container {
+    width: 220px;
+    height: 220px;
+}
+
+#spp-lottie-container svg {
+    filter: drop-shadow(0 0 16px rgba(0, 178, 254, 0.45));
+}
+
+.spp-lottie-emblem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spp-preloader-logo {
+    width: 68px;
+    height: auto;
+    max-height: 44px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 16px rgba(0, 178, 254, 0.85));
+    animation: sppLogoPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes sppLogoPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 12px rgba(0, 178, 254, 0.65));
+    }
+    50% {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 26px rgba(0, 178, 254, 0.98));
+    }
+}
+
+.spp-preloader-brand {
+    font-family: 'Space Grotesk', 'Outfit', -apple-system, sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.spp-preloader-counter {
+    font-family: 'Space Grotesk', monospace, sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    line-height: 1;
+    margin-bottom: 16px;
+    text-shadow: 0 0 24px rgba(0, 178, 254, 0.85);
+}
+
+.spp-preloader-unit {
+    font-size: 22px;
+    color: #00B2FE;
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.spp-preloader-track {
+    width: 250px;
+    max-width: 80vw;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto 14px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.spp-preloader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #0077B6, #00B2FE, #60d5ff);
+    border-radius: 99px;
+    box-shadow: 0 0 14px #00B2FE;
+    position: relative;
+    will-change: width;
+}
+
+.spp-preloader-spark {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #ffffff, 0 0 16px #00B2FE;
+}
+
+.spp-preloader-status-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.spp-preloader-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00B2FE;
+    box-shadow: 0 0 8px #00B2FE;
+    animation: sppDotPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes sppDotPulse {
+    0%, 100% { opacity: 0.35; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.spp-preloader-status {
+    font-family: monospace, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.65);
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+}
+
+html.spp-loading,
+body.spp-loading {
+    overflow: hidden !important;
+    height: 100% !important;
+    touch-action: none;
+    -webkit-overflow-scrolling: auto;
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE VIEWPORT OPTIMIZATIONS (< 576px)
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 576px) {
+    .spp-lottie-stage {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 8px;
+    }
+    #spp-lottie-container {
+        width: 160px;
+        height: 160px;
+    }
+    .spp-preloader-logo {
+        width: 52px;
+        max-height: 34px;
+    }
+    .spp-preloader-brand {
+        font-size: 10px;
+        letter-spacing: 3px;
+        margin-bottom: 4px;
+    }
+    .spp-preloader-counter {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+    .spp-preloader-unit {
+        font-size: 18px;
+    }
+    .spp-preloader-track {
+        width: 190px;
+        height: 3px;
+        margin-bottom: 10px;
+    }
+    .spp-preloader-status {
+        font-size: 9.5px;
+        letter-spacing: 1px;
+    }
+}
